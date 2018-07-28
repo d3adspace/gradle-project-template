@@ -9,6 +9,7 @@ version '1.0-SNAPSHOT'
 subprojects {
 
     apply plugin: 'java'
+    apply plugin: 'jacoco'
     apply plugin: 'maven'
 
     sourceCompatibility = 1.8
@@ -62,5 +63,27 @@ subprojects {
 
     test {
         useJUnitPlatform()
+    }
+}
+
+task codeCoverageReport(type: JacocoReport) {
+    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+
+    // Add all relevant sourcesets from the subprojects
+    subprojects.each {
+        sourceSets it.sourceSets.main
+    }
+
+    reports {
+        xml.enabled = true
+        xml.setDestination(new File("${buildDir}/reports/jacoco/report.xml"))
+        html.setEnabled(true)
+        html.setDestination(new File("${buildDir}/reports/jacoco/report.html"))
+    }
+
+    dependencies {
+        subprojects {
+            test
+        }
     }
 }
