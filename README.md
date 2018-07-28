@@ -1,6 +1,12 @@
 # gradle-project-template
 A gradle template project containing configuration for common architectures including multi project builds, testing with JUnit 5 and Mockito, CI via TravisCI, Coverage via codecov, code climate via codacy and some other useful tools.
 
+# Build status
+|             	| Build Status                                                                                                                                              	| Test Code Coverage                                                                                                                                               	|
+|-------------	|-----------------------------------------------------------------------------------------------------------------------------------------------------------	|------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
+| Master      	| [![Build Status](https://travis-ci.org/FelixKlauke/gradle-project-template.svg?branch=master)](https://travis-ci.org/FelixKlauke/gradle-project-template) 	| [![codecov](https://codecov.io/gh/FelixKlauke/gradle-project-template/branch/master/graph/badge.svg)](https://codecov.io/gh/FelixKlauke/gradle-project-template) 	|
+| Development 	| [![Build Status](https://travis-ci.org/FelixKlauke/gradle-project-template.svg?branch=dev)](https://travis-ci.org/FelixKlauke/gradle-project-template)    	| [![codecov](https://codecov.io/gh/FelixKlauke/gradle-project-template/branch/dev/graph/badge.svg)](https://codecov.io/gh/FelixKlauke/gradle-project-template)    	|
+
 # Steps for project generation
 
 1. Create a new folder, enter it and use `gradle init`.
@@ -163,4 +169,11 @@ script:
 ###################################
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+```
+15. Add status badges to readme:
+```
+|             	| Build Status                                                                                                                                              	| Test Code Coverage                                                                                                                                               	|
+|-------------	|-----------------------------------------------------------------------------------------------------------------------------------------------------------	|------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
+| Master      	| [![Build Status](https://travis-ci.org/FelixKlauke/gradle-project-template.svg?branch=master)](https://travis-ci.org/FelixKlauke/gradle-project-template) 	| [![codecov](https://codecov.io/gh/FelixKlauke/gradle-project-template/branch/master/graph/badge.svg)](https://codecov.io/gh/FelixKlauke/gradle-project-template) 	|
+| Development 	| [![Build Status](https://travis-ci.org/FelixKlauke/gradle-project-template.svg?branch=dev)](https://travis-ci.org/FelixKlauke/gradle-project-template)    	| [![codecov](https://codecov.io/gh/FelixKlauke/gradle-project-template/branch/dev/graph/badge.svg)](https://codecov.io/gh/FelixKlauke/gradle-project-template)    	|
 ```
