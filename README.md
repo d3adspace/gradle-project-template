@@ -26,3 +26,30 @@ build
 3. Share project on github.
 4. Add README with basic information.
 5. Create a dev branch and protect the master branch.
+6. Visit travis-ci.org and enable the builds for your project.
+7. Create .travis.yml in a new branch and configure your build:
+```
+######################################
+### Configure programming language ###
+######################################
+language: java
+
+##################################
+### Make sure using Oracle JDK ###
+##################################
+jdk:
+  - oraclejdk8
+
+###################################
+### Disable Email notifications ###
+###################################
+notifications:
+  email: false
+
+###########################
+### Actual Build Script ###
+###########################
+script:
+  - ./gradlew build check
+```
+8. Let travis build and merge into dev as soon as it succeeds.
