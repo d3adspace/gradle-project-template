@@ -125,3 +125,27 @@ subprojects {
     }
 }
 ```
+13. Add jacoco gradle plugin with `apply plugin: 'jacoco'` and configure the corresponding task that will generate and aggregate test reports: 
+```
+task codeCoverageReport(type: JacocoReport) {
+    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+
+    // Add all relevant sourcesets from the subprojects
+    subprojects.each {
+        sourceSets it.sourceSets.main
+    }
+
+    reports {
+        xml.enabled = true
+        xml.setDestination(new File("${buildDir}/reports/jacoco/report.xml"))
+        html.setEnabled(true)
+        html.setDestination(new File("${buildDir}/reports/jacoco/report.html"))
+    }
+
+    dependencies {
+        subprojects {
+            test
+        }
+    }
+}
+```
