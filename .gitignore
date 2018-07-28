@@ -1,0 +1,16 @@
+#####################
+### Project files ###
+#####################
+*.iml
+.idea
+target
+out
+
+##############
+### Gradle ###
+##############
+.gradle
+build
+
+# Never ignore gradle wrapper
+!gradle/wrapper/gradle-wrapper.jar
