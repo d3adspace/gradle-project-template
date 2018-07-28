@@ -66,7 +66,7 @@ plugins {
 group 'de.d3adspace'
 version '1.0-SNAPSHOT'
 
-subprojects {
+allprojects {
 
     apply plugin: 'java'
     apply plugin: 'maven'

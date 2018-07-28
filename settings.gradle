@@ -1,2 +1,8 @@
 rootProject.name = 'gradle-project-template'
 
+include 'api'
+findProject(':api')?.name = 'example-api'
+
+include 'core'
+findProject(':core')?.name = 'example-core'
+
