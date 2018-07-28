@@ -149,3 +149,18 @@ task codeCoverageReport(type: JacocoReport) {
     }
 }
 ```
+14. Alter your build script to offer coverage reporting to codecov.io:
+```
+###########################
+### Actual Build Script ###
+###########################
+script:
+  - ./gradlew build check
+  - ./gradlew codeCoverageReport
+
+###################################
+### Upload Code Coverage Report ###
+###################################
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+```
