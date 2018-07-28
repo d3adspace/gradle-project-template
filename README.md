@@ -56,3 +56,4 @@ script:
 9. Add a code of conduct (See CODE_OF_CONDUCT.md) in a new branch and merge it into dev.
 10. Add LICENSE file in a new branch and merge it into dev. You may also add the license text to be used as a default file header for all your project files.
 11. Add GitHub issue templates for bugs and feature requests.
+12. Add JUnit 5 and Mockito for testing in a new branch and merge into dev.
