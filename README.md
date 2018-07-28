@@ -53,3 +53,4 @@ script:
   - ./gradlew build check
 ```
 8. Let travis build and merge into dev as soon as it succeeds.
+9. Add a code of conduct (See CODE_OF_CONDUCT.md) in a new branch and merge it into dev.
