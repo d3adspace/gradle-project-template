@@ -9,16 +9,9 @@ version '1.0-SNAPSHOT'
 
 description = 'Core module.'
 
-sourceCompatibility = 1.8
-
 shadowJar {
 
     configurations = [project.configurations.runtime]
-}
-
-
-repositories {
-    mavenCentral()
 }
 
 dependencies {

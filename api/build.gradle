@@ -5,11 +5,8 @@ plugins {
 group 'de.d3adspace'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
-
 repositories {
     mavenCentral()
 }
-
 
 description = 'API module.'
