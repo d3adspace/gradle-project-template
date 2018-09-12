@@ -113,7 +113,7 @@ allprojects {
         /**
          * Vintage platform engine.
          */
-        compile group: 'org.junit.platform', name: 'junit-platform-engine', version: '1.2.0'
+        testCompile group: 'org.junit.platform', name: 'junit-platform-engine', version: '1.2.0'
 
         /**
          * JUnit jupiter with mockito.
