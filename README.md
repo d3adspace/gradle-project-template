@@ -177,3 +177,18 @@ after_success:
 | Master      	| [![Build Status](https://travis-ci.org/FelixKlauke/gradle-project-template.svg?branch=master)](https://travis-ci.org/FelixKlauke/gradle-project-template) 	| [![codecov](https://codecov.io/gh/FelixKlauke/gradle-project-template/branch/master/graph/badge.svg)](https://codecov.io/gh/FelixKlauke/gradle-project-template) 	|
 | Development 	| [![Build Status](https://travis-ci.org/FelixKlauke/gradle-project-template.svg?branch=dev)](https://travis-ci.org/FelixKlauke/gradle-project-template)    	| [![codecov](https://codecov.io/gh/FelixKlauke/gradle-project-template/branch/dev/graph/badge.svg)](https://codecov.io/gh/FelixKlauke/gradle-project-template)    	|
 ```
+16. Configure builds for fat jars and dependencies. Our Example ("core" needs "api" at runtime):
+
+Gradle Plugins (We use shadow: https://github.com/johnrengelman/shadow):
+```
+id 'com.github.johnrengelman.shadow' version '2.0.4'
+```
+
+Configuration depending on what you need. In our case we want to include all dependencies in runtime scope:
+
+shadowJar {
+
+    configurations = [project.configurations.runtime]
+}
+
+
