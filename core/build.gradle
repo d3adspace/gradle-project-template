@@ -1,4 +1,6 @@
 plugins {
+
+    id 'com.github.johnrengelman.shadow' version '2.0.4'
     id 'java'
 }
 
@@ -8,6 +10,12 @@ version '1.0-SNAPSHOT'
 description = 'Core module.'
 
 sourceCompatibility = 1.8
+
+shadowJar {
+
+    configurations = [project.configurations.runtime]
+}
+
 
 repositories {
     mavenCentral()
