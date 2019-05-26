@@ -161,4 +161,39 @@ shadowJar {
 }
 ```
 
+17. Add sonarqube Audits
+In this case we will use a self hosted sonarqube. You can also use the public [Sonarcloud with travis-ci](https://docs.travis-ci.com/user/sonarcloud/). 
+
+We will first add the sonarqube plugin to our build.gradle file:
+
+```xml
+plugins {
+    id 'org.sonarqube' version "2.7"
+    id 'java'
+}
+```
+
+To integrate sonarqube into our CI pipeline we add the following build script:
+```xml
+###########################
+### Actual Build Script ###
+###########################
+script:
+- ./gradlew build test
+- ./gradlew codeCoverageReport
+- ./gradlew sonarqube -Dsonar.host.url=$SONAR_URL -Dsonar.projectKey=$SONAR_PROJECT_KEY -Dsonar.login=$SONAR_TOKEN
+```
+
+As our private sonarqube needs authentication, we have to encrypt the login in the travis ci config:
+```xml
+###################
+### Environment ###
+###################
+env:
+  global:
+    - SONAR_URL=https://repository.klauke-enterprises.com
+    - SONAR_PROJECT_KEY=gradle-project-template
+    - secure: H8vdFbgvrbLsQ402ukiwaftS3UYfOnA7RuF62oAhU1BBRA0C3oPz3wynoYgWFqEdfWDmiTVYi0YdIJLCCq9aL7H9omEu6fiTYXjIF5AwaKe7Uo4BicQhHMEMC3Ew516wEAioJV64VZZh/ydMCi3vIMViiJGYu96uVQJSsNe234/VHgC0slhFPMLebqLm17FK4lGO6mSRM3DgEsgeJPGz7afXrZxQp/Awi7EpGs8gyra6M0pfQ9aSOisNUTt5oS8wtTM0ByD6Xdug5yK0+l5D/Ct3slS6CNmkKGQC8W6e/hNm457ZML5si7agyO0jIN2hgnHerME46dnR+R6j5Xp2H16dmACbhmIraQ5Zz7fJCXDAdHI7bfMB0Gonmdi/VlJrpv+dwJtp5s91G/Ju6Rx/D8zVoiu19s4TazJ+td4btCDNt0cZITh+q4HF3Wo94LAFsEO7nXgVgDZnH6vADHD8dGlHG6D648HV6O3MFRpZJBNN6wFksuVEBvyYdiDnfKobZtYoi9JBmV2zYVwubleiYft0jrzJOnfWg2884JzGJoYo+Sk5n5sEodeMnPO9JunIxabiprd57FrI12WZ8GU91aXmkeYBv/4hjPbAvRyYsE9nz6ZhH64qQ/oY9CDhi73jmq+2316qGcu/i7YwBoBFJNrPLSnLjxqwXPNX3iuydcQ=
+
+```
 
