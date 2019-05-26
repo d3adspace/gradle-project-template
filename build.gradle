@@ -11,6 +11,7 @@ allprojects {
     apply plugin: 'java'
     apply plugin: 'jacoco'
     apply plugin: 'maven'
+    apply plugin: 'maven-publish'
 
     sourceCompatibility = 1.11
     targetCompatibility = 1.11
@@ -33,6 +34,29 @@ allprojects {
 
     test {
         useJUnitPlatform()
+    }
+
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                from(components.java)
+            }
+        }
+
+        repositories {
+
+            maven {
+
+                def releasesRepoUrl = 'https://repository.klauke-enterprises.com/repository/maven-releases/'
+                def snapshotsRepoUrl = 'https://repository.klauke-enterprises.com/repository/maven-snapshots/'
+                url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+
+                credentials {
+                    username = System.getenv('NEXUS_USERNAME')
+                    password = System.getenv('NEXUS_PASSWORD')
+                }
+            }
+        }
     }
 }
 
