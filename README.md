@@ -255,6 +255,9 @@ deploy:
 But the CI still needs the credentials to access the nexus. These are supplied via envrionemtn variables. We can [encrypt](https://docs.travis-ci.com/user/encryption-keys/) them into our CI config:
 
 ```xml
+###################
+### Environment ###
+###################
 env:
   global:
     - SONAR_URL=https://sonar.klauke-enterprises.com
