@@ -252,7 +252,7 @@ deploy:
     tags: true
 ```
 
-But the CI still needs the credentials to access the nexus. These are supplied via envrionemtn variables. We can [encrypt](https://docs.travis-ci.com/user/encryption-keys/) them into our CI config:
+But the CI still needs the credentials to access the nexus. These are supplied via environment variables. We can [encrypt](https://docs.travis-ci.com/user/encryption-keys/) them into our CI config:
 
 ```xml
 ###################
