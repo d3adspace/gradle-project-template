@@ -34,7 +34,7 @@ after_success:
 ##################
 deploy:
   provider: script
-  script: ./gradlw publish
+  script: ./gradlew publish
   on:
     branch: master
     tags: true
