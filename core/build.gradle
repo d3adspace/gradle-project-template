@@ -1,0 +1,20 @@
+plugins {
+
+    id 'com.github.johnrengelman.shadow' version '2.0.4'
+    id 'java'
+}
+
+group 'de.d3adspace'
+version '1.0-SNAPSHOT'
+
+description = 'Core module.'
+
+shadowJar {
+
+    configurations = [project.configurations.runtime]
+}
+
+dependencies {
+
+    compile project(':example-api')
+}

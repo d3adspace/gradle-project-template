@@ -1,16 +1,78 @@
 plugins {
+    id 'org.sonarqube' version "2.7"
     id 'java'
 }
 
 group 'de.d3adspace'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+allprojects {
 
-repositories {
-    mavenCentral()
+    apply plugin: 'java'
+    apply plugin: 'jacoco'
+    apply plugin: 'maven'
+    apply plugin: 'maven-publish'
+
+    sourceCompatibility = 1.11
+    targetCompatibility = 1.11
+
+    repositories {
+
+        mavenLocal()
+        mavenCentral()
+    }
+
+    dependencies {
+
+        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.2.0'
+        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.2.0'
+        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.2.0'
+        testCompile group: 'org.junit.platform', name: 'junit-platform-engine', version: '1.2.0'
+        testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version: '2.19.0'
+        testCompile group: 'org.mockito', name: 'mockito-core', version: '2.19.0'
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                from(components.java)
+            }
+        }
+
+        repositories {
+
+            maven {
+
+                def releasesRepoUrl = 'https://repository.klauke-enterprises.com/repository/maven-releases/'
+                def snapshotsRepoUrl = 'https://repository.klauke-enterprises.com/repository/maven-snapshots/'
+                url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+
+                credentials {
+                    username = System.getenv('NEXUS_USERNAME')
+                    password = System.getenv('NEXUS_PASSWORD')
+                }
+            }
+        }
+    }
 }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+task codeCoverageReport(type: JacocoReport) {
+    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+
+    subprojects.each {
+        sourceSets it.sourceSets.main
+    }
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+        csv.enabled = true
+        xml.destination = new File("${buildDir}/reports/jacoco/report.xml")
+        html.destination = new File("${buildDir}/reports/jacoco/report.html")
+        csv.destination = new File("${buildDir}/reports/jacoco/report.csv")
+    }
 }

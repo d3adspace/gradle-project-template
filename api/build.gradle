@@ -1,0 +1,12 @@
+plugins {
+    id 'java'
+}
+
+group 'de.d3adspace'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+description = 'API module.'
