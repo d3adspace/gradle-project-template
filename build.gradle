@@ -12,12 +12,6 @@ buildScan {
     termsOfServiceAgree = 'yes'
 }
 
-repositories {
-    google()
-    mavenLocal()
-    mavenCentral()
-}
-
 allprojects {
 
     apply plugin: 'java'
@@ -29,7 +23,7 @@ allprojects {
     targetCompatibility = 1.11
 
     repositories {
-
+        google()
         mavenLocal()
         mavenCentral()
     }
