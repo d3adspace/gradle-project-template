@@ -4,12 +4,18 @@ plugins {
     id 'java'
 }
 
-group 'de.d3adspace'
+group 'de.d3adspace.project'
 version '1.0-SNAPSHOT'
 
 buildScan {
     termsOfServiceUrl = 'https://gradle.com/terms-of-service'
     termsOfServiceAgree = 'yes'
+}
+
+repositories {
+    google()
+    mavenLocal()
+    mavenCentral()
 }
 
 allprojects {
