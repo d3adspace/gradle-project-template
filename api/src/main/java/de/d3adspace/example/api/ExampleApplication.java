@@ -5,5 +5,5 @@ package de.d3adspace.example.api;
  */
 public interface ExampleApplication {
 
-    void run();
+  void run();
 }

@@ -7,7 +7,7 @@ language: java
 ### Make sure using Oracle JDK ###
 ##################################
 jdk:
-- oraclejdk11
+  - oraclejdk11
 
 ###################################
 ### Disable Email notifications ###
@@ -19,15 +19,15 @@ notifications:
 ### Actual Build Script ###
 ###########################
 script:
-- ./gradlew build test
-- ./gradlew codeCoverageReport
-- ./gradlew sonarqube -Dsonar.host.url=$SONAR_URL -Dsonar.projectKey=$SONAR_PROJECT_KEY -Dsonar.login=$SONAR_TOKEN
+  - ./gradlew build test
+  - ./gradlew codeCoverageReport
+  - ./gradlew sonarqube -Dsonar.host.url=$SONAR_URL -Dsonar.projectKey=$SONAR_PROJECT_KEY -Dsonar.login=$SONAR_TOKEN
 
 ###################################
 ### Upload Code Coverage Report ###
 ###################################
 after_success:
-- bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash)
 
 ##################
 ### Deployment ###

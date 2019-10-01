@@ -5,5 +5,5 @@ package de.d3adspace.example.api;
  */
 public interface ExampleService {
 
-    String fetchExampleData();
+  String fetchExampleData();
 }

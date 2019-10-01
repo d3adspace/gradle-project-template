@@ -7,15 +7,15 @@ import de.d3adspace.example.api.ExampleService;
  */
 public class ExampleServiceImpl implements ExampleService {
 
-    private final String response;
+  private final String response;
 
-    public ExampleServiceImpl(String response) {
-        this.response = response;
-    }
+  public ExampleServiceImpl(String response) {
+    this.response = response;
+  }
 
-    @Override
-    public String fetchExampleData() {
+  @Override
+  public String fetchExampleData() {
 
-        return response;
-    }
+    return response;
+  }
 }

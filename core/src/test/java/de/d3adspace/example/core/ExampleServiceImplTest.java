@@ -1,28 +1,28 @@
 package de.d3adspace.example.core;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Felix Klauke <info@felix-klauke.de>
  */
 class ExampleServiceImplTest {
 
-    private static final String TEST_DATA = "resp";
-    private ExampleServiceImpl exampleService;
+  private static final String TEST_DATA = "resp";
+  private ExampleServiceImpl exampleService;
 
-    @BeforeEach
-    void setUp() {
+  @BeforeEach
+  void setUp() {
 
-        exampleService = new ExampleServiceImpl(TEST_DATA);
-    }
+    exampleService = new ExampleServiceImpl(TEST_DATA);
+  }
 
-    @Test
-    void testFetchBackendData() {
-        String fetchedData = exampleService.fetchExampleData();
+  @Test
+  void testFetchBackendData() {
+    String fetchedData = exampleService.fetchExampleData();
 
-        assertEquals(TEST_DATA, fetchedData);
-    }
+    assertEquals(TEST_DATA, fetchedData);
+  }
 }
