@@ -11,6 +11,3 @@ out
 ##############
 .gradle
 build
-
-# Never ignore gradle wrapper
-!gradle/wrapper/gradle-wrapper.jar
