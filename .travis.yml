@@ -15,6 +15,14 @@ jdk:
 notifications:
   email: false
 
+###############
+### Caching ###
+###############
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+
 #################
 ### SonarQube ###
 #################
