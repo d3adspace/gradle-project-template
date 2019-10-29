@@ -1,89 +1,95 @@
 plugins {
-    id 'com.gradle.build-scan' version '2.1'
-    id 'org.sonarqube' version "2.7"
-    id 'java'
+  id 'com.gradle.build-scan' version '2.1'
+  id 'java'
+  id "org.sonarqube" version "2.7.1"
 }
 
 group 'de.d3adspace.project'
 version '1.0-SNAPSHOT'
 
 buildScan {
-    termsOfServiceUrl = 'https://gradle.com/terms-of-service'
-    termsOfServiceAgree = 'yes'
+  termsOfServiceUrl = 'https://gradle.com/terms-of-service'
+  termsOfServiceAgree = 'yes'
 }
 
 allprojects {
 
-    apply plugin: 'java'
-    apply plugin: 'jacoco'
-    apply plugin: 'maven'
-    apply plugin: 'maven-publish'
+  apply plugin: 'java'
+  apply plugin: 'jacoco'
+  apply plugin: 'maven'
+  apply plugin: 'maven-publish'
 
-    sourceCompatibility = 1.11
-    targetCompatibility = 1.11
+  sourceCompatibility = 1.11
+  targetCompatibility = 1.11
+
+  repositories {
+    google()
+    mavenLocal()
+    mavenCentral()
+  }
+
+  dependencies {
+
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api',
+      version: '5.5.2'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params',
+      version: '5.5.2'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine',
+      version: '5.5.2'
+    testCompile group: 'org.junit.platform', name: 'junit-platform-engine',
+      version: '1.5.2'
+    testCompile group: 'org.mockito', name: 'mockito-junit-jupiter',
+      version: '3.1.0'
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '3.1.0'
+  }
+
+  test {
+    useJUnitPlatform()
+  }
+
+  publishing {
+    publications {
+      maven(MavenPublication) {
+        from(components.java)
+      }
+    }
 
     repositories {
-        google()
-        mavenLocal()
-        mavenCentral()
-    }
 
-    dependencies {
+      maven {
 
-        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api',
-          version: '5.5.2'
-        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params',
-          version: '5.5.2'
-        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine',
-          version: '5.5.2'
-        testCompile group: 'org.junit.platform', name:'junit-platform-engine',
-          version: '1.5.2'
-        testCompile group: 'org.mockito', name: 'mockito-junit-jupiter',
-          version: '3.1.0'
-        testCompile group: 'org.mockito', name: 'mockito-core', version: '3.1.0'
-    }
+        def releasesRepoUrl = 'https://repository.klauke-enterprises.com/repository/maven-releases/'
+        def snapshotsRepoUrl = 'https://repository.klauke-enterprises.com/repository/maven-snapshots/'
+        url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
 
-    test {
-        useJUnitPlatform()
-    }
-
-    publishing {
-        publications {
-            maven(MavenPublication) {
-                from(components.java)
-            }
+        credentials {
+          username = System.getenv('NEXUS_USERNAME')
+          password = System.getenv('NEXUS_PASSWORD')
         }
-
-        repositories {
-
-            maven {
-
-                def releasesRepoUrl = 'https://repository.klauke-enterprises.com/repository/maven-releases/'
-                def snapshotsRepoUrl = 'https://repository.klauke-enterprises.com/repository/maven-snapshots/'
-                url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
-
-                credentials {
-                    username = System.getenv('NEXUS_USERNAME')
-                    password = System.getenv('NEXUS_PASSWORD')
-                }
-            }
-        }
+      }
     }
+  }
 }
 
 task codeCoverageReport(type: JacocoReport) {
-    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+  executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
 
-    subprojects.each {
-        sourceSets it.sourceSets.main
-    }
+  subprojects.each {
+    sourceSets it.sourceSets.main
+  }
 
-    reports {
-        xml.enabled = true
-        html.enabled = true
-        csv.enabled = true
-        xml.destination = new File("${buildDir}/reports/jacoco/report.xml")
-        html.destination = new File("${buildDir}/reports/jacoco/report.html")
-        csv.destination = new File("${buildDir}/reports/jacoco/report.csv")
-    }
+  reports {
+    xml.enabled = true
+    html.enabled = true
+    csv.enabled = true
+    xml.destination = new File("${buildDir}/reports/jacoco/report.xml")
+    html.destination = new File("${buildDir}/reports/jacoco/report.html")
+    csv.destination = new File("${buildDir}/reports/jacoco/report.csv")
+  }
+}
+
+sonarqube {
+  properties {
+    property "sonar.projectKey", "d3adspace_gradle-project-template"
+  }
 }
