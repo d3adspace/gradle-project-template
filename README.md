@@ -4,8 +4,8 @@ A gradle template project containing configuration for common architectures incl
 # Build status
 |             	| Build Status                                                                                                                                              	| Test Code Coverage                                                                                                                                               	|
 |-------------	|-----------------------------------------------------------------------------------------------------------------------------------------------------------	|------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
-| Master      	| [![Build Status](https://travis-ci.org/d3adspace/gradle-project-template.svg?branch=master)](https://travis-ci.org/d3adspace/gradle-project-template) 	| [![codecov](https://codecov.io/gh/d3adspace/gradle-project-template/branch/master/graph/badge.svg)](https://codecov.io/gh/d3adspace/gradle-project-template) 	|
-| Development 	| [![Build Status](https://travis-ci.org/d3adspace/gradle-project-template.svg?branch=dev)](https://travis-ci.org/d3adspace/gradle-project-template)    	| [![codecov](https://codecov.io/gh/d3adspace/gradle-project-template/branch/dev/graph/badge.svg)](https://codecov.io/gh/d3adspace/gradle-project-template)    	|
+| Master      	| [![Build Status](https://travis-ci.com/d3adspace/gradle-project-template.svg?branch=master)](https://travis-ci.com/d3adspace/gradle-project-template) 	| [![codecov](https://codecov.io/gh/d3adspace/gradle-project-template/branch/master/graph/badge.svg)](https://codecov.io/gh/d3adspace/gradle-project-template) 	|
+| Development 	| [![Build Status](https://travis-ci.com/d3adspace/gradle-project-template.svg?branch=dev)](https://travis-ci.com/d3adspace/gradle-project-template)    	| [![codecov](https://codecov.io/gh/d3adspace/gradle-project-template/branch/dev/graph/badge.svg)](https://codecov.io/gh/d3adspace/gradle-project-template)    	|
 
 # Steps for project generation
 
@@ -142,8 +142,8 @@ after_success:
 ```
 |             	| Build Status                                                                                                                                              	| Test Code Coverage                                                                                                                                               	|
 |-------------	|-----------------------------------------------------------------------------------------------------------------------------------------------------------	|------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
-| Master      	| [![Build Status](https://travis-ci.org/d3adspace/gradle-project-template.svg?branch=master)](https://travis-ci.org/d3adspace/gradle-project-template) 	| [![codecov](https://codecov.io/gh/d3adspace/gradle-project-template/branch/master/graph/badge.svg)](https://codecov.io/gh/d3adspace/gradle-project-template) 	|
-| Development 	| [![Build Status](https://travis-ci.org/d3adspace/gradle-project-template.svg?branch=dev)](https://travis-ci.org/d3adspace/gradle-project-template)    	| [![codecov](https://codecov.io/gh/d3adspace/gradle-project-template/branch/dev/graph/badge.svg)](https://codecov.io/gh/d3adspace/gradle-project-template)    	|
+| Master      	| [![Build Status](https://travis-ci.com/d3adspace/gradle-project-template.svg?branch=master)](https://travis-ci.com/d3adspace/gradle-project-template) 	| [![codecov](https://codecov.io/gh/d3adspace/gradle-project-template/branch/master/graph/badge.svg)](https://codecov.io/gh/d3adspace/gradle-project-template) 	|
+| Development 	| [![Build Status](https://travis-ci.com/d3adspace/gradle-project-template.svg?branch=dev)](https://travis-ci.com/d3adspace/gradle-project-template)    	| [![codecov](https://codecov.io/gh/d3adspace/gradle-project-template/branch/dev/graph/badge.svg)](https://codecov.io/gh/d3adspace/gradle-project-template)    	|
 ```
 16. Configure builds for fat jars and dependencies. Our Example ("core" needs "api" at runtime):
 
