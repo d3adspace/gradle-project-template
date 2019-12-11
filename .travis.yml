@@ -7,7 +7,7 @@ language: java
 ### Make sure using Oracle JDK ###
 ##################################
 jdk:
-  - oraclejdk11
+  - oraclejdk13
 
 ###################################
 ### Disable Email notifications ###

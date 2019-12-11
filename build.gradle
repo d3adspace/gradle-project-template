@@ -17,8 +17,8 @@ allprojects {
   apply plugin: 'maven'
   apply plugin: 'maven-publish'
 
-  sourceCompatibility = 1.11
-  targetCompatibility = 1.11
+  sourceCompatibility = 1.13
+  targetCompatibility = 1.13
 
   repositories {
     google()
