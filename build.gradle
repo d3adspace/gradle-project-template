@@ -2,15 +2,15 @@ plugins {
   id "org.sonarqube" version "2.8"
 }
 
-group 'de.d3adspace.project'
-version '1.0-SNAPSHOT'
-
 buildScan {
   termsOfServiceUrl = 'https://gradle.com/terms-of-service'
   termsOfServiceAgree = 'yes'
 }
 
 allprojects {
+  group 'de.d3adspace.project'
+  version '1.0-SNAPSHOT'
+
   apply plugin: 'java'
   apply plugin: 'java-library'
   apply plugin: 'jacoco'
@@ -46,24 +46,28 @@ allprojects {
   }
 
   publishing {
-    publications {
-      maven(MavenPublication) {
-        from(components.java)
-      }
-    }
-
     repositories {
-
       maven {
-
+        name = "GitHubPackages"
+        url = uri("https://maven.pkg.github.com/FelixKlauke/angelina")
+        credentials {
+          username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_PACKAGE_REGISTRY_USER")
+          password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_PACKAGE_REGISTRY_API_KEY")
+        }
+      }
+      maven {
         def releasesRepoUrl = 'https://repository.klauke-enterprises.com/repository/maven-releases/'
         def snapshotsRepoUrl = 'https://repository.klauke-enterprises.com/repository/maven-snapshots/'
         url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
-
         credentials {
           username = System.getenv('NEXUS_USERNAME')
           password = System.getenv('NEXUS_PASSWORD')
         }
+      }
+    }
+    publications {
+      gpr(MavenPublication) {
+        from(components.java)
       }
     }
   }
